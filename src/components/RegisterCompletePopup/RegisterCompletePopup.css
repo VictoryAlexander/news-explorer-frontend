@@ -1,0 +1,9 @@
+.popup__title_completed {
+  margin: 43px 0 14px 0;
+  color: #000000;
+}
+
+.popup__redirect-button_completed {
+  font-size: 18px;
+  margin: 0 0 51px 0;
+}

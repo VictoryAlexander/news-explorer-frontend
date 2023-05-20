@@ -1,0 +1,30 @@
+.newsCard__save-button_delete {
+  background: #ffffff url(../../images/trash.svg) center no-repeat;
+}
+
+.newsCard__save-button_delete:hover {
+  background: #ffffff url(../../images/trash\ hover.svg) center no-repeat;
+}
+
+.newsCard__tag {
+  background: #ffffff;
+  margin: 0;
+  text-align: center;
+  border-radius: 10px;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #000000;
+  width: 87px;
+  margin-right: 41px;
+  padding: 8px 0 0 0;
+}
+
+@media screen and (max-width: 1439px) {
+  .newsCard__tag {
+    margin-right: 87px;
+    width: 76px;
+  }
+}
