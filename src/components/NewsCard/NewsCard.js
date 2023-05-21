@@ -27,7 +27,7 @@ function NewsCard({ card, handleSignInClick, onCardSave }) {
       </div>
       <div className='newsCard__container' onClick={() => openInNewTab(card.url)}>
         <p className='newsCard__date'>{dateReformater(card.publishedAt)}</p>
-        <p className='newsCard__title'>{card.title}</p>
+        <h3 className='newsCard__title'>{card.title}</h3>
         <p className='newsCard__description'>{card.description}</p>
         <p className='newsCard__footer'>{card.source.name}</p>
       </div>

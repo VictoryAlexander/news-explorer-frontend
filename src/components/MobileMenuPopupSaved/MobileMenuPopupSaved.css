@@ -1,0 +1,24 @@
+.menu__wrapper_saved {
+  background-color: #ffffff;
+}
+
+.menu__logo_saved {
+  color: #1A1B22;
+}
+
+.menu__close_saved {
+  background-color: #1A1B22;
+}
+
+.menu__link_saved {
+  color: #1A1B22;
+}
+
+.menu__button_container_saved {
+  border: 1px solid #1A1B22;
+  color: #1A1B22;
+}
+
+.menu__sign-out_saved {
+  background: transparent url(../../images/logout\ saved.svg) center no-repeat;
+}

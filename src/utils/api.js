@@ -1,4 +1,4 @@
-const baseUrl = 'https://localhost.3001';
+const baseUrl = 'http://localhost:3001'; //This temporary for json-server tool
 
 export function handleServerResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

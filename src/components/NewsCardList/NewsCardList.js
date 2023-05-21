@@ -22,7 +22,7 @@ function NewsCardList({ cards, handleSignInClick, onCardSave }) {
 
   return(
     <section className='newsCards'>
-      <p className='newsCards__title'>Search results</p>
+      <h2 className='newsCards__title'>Search results</h2>
       <ul className='newsCards__list'>
         {visibleData.map((card, index) => (
           <NewsCard

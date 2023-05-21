@@ -63,6 +63,12 @@
   display: flex;
 }
 
+.navigation__user-text {
+  width: 94px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .navigation__sign-out {
   background: transparent url(../../images/logout.svg) center no-repeat;
   border: none;
@@ -72,7 +78,7 @@
   cursor: url(../../images/Pointer.svg), pointer;
 }
 
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 833px) {
   .navigation__link {
     font-size: 16px;
     line-height: 1.5;
@@ -88,9 +94,19 @@
   .navigation__button_container {
     padding: 8px 15px 8px 15px;
   }
+
+  .navigation__user-text {
+    width: 50px;
+  }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 665px) {
+  .navigation__link {
+    padding: 0 9px 24px 9px;
+  }
+}
+
+@media screen and (max-width: 533px) {
   .navigation__link {
     display: none;
   }

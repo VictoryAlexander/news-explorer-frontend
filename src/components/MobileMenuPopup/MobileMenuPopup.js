@@ -36,7 +36,7 @@ function MobileMenuPopup({ onClose, onButtonClick, handleSignOutClick, isLoggedI
             onClick={onClose}
           />
         </div>
-        <Link to='/' className="menu__home" onClick={onClose}>Home</Link>
+        <Link to='/' className="menu__link" onClick={onClose}>Home</Link>
         <button type="button" className="menu__button" onClick={onButtonClick}>Sign in</button>
       </div>
     </div>

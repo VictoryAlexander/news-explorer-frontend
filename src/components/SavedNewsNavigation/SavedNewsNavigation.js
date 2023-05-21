@@ -3,7 +3,7 @@ import './SavedNewsNavigation.css';
 import { Link } from "react-router-dom";
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function SavedNewsNavigation({ handleSignOutClick }) {
+function SavedNewsNavigation({ handleSignOutClick, handleNavClick }) {
   const currentUser = useContext(CurrentUserContext);
   return (
     <nav className="navigation">
@@ -20,10 +20,13 @@ function SavedNewsNavigation({ handleSignOutClick }) {
         </li>
         <li>
           <p className='navigation__button navigation__button_container navigation__button_container_saved'>
-            {currentUser}
+            <span className='navigation__user-text'>{currentUser}</span>
             <button onClick={handleSignOutClick} className='navigation__sign-out navigation__sign-out_saved'/>
           </p>
         </li>
+        <li>
+          <button type='button' onClick={handleNavClick} className='navigation__mobile-button navigation__mobile-button_saved'/>
+          </li>
       </ul>
     </nav>
   )

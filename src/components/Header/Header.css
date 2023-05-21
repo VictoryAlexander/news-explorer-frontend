@@ -22,13 +22,13 @@
   margin-bottom: auto;
 }
 
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 975px) {
   .header__container {
-    margin: 14px 40px 12px 40px;
+    margin: 14px 65px 12px 65px;
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 665px) {
   .header__container {
     margin: 16px;
   }

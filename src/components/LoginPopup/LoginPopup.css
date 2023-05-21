@@ -1,4 +1,4 @@
-.logIn__label {
+.popup__label {
   display: flex;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
@@ -9,7 +9,7 @@
   margin: 22px 0 9px 0;
 }
 
-.logIn__input {
+.popup__input {
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -21,10 +21,6 @@
   margin: 0 0 9px 0;
 }
 
-.logIn__input:focus {
-  outline: none;
-}
-
-.logIn__input::placeholder {
+.popup__input::placeholder {
   opacity: 0.2;
 }

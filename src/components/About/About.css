@@ -1,7 +1,7 @@
 .about {
   display: flex;
-  margin: 0 216px 80px 104px;
-  padding: 80px 0 0 0;
+  background-color: #ffffff;
+  padding: 80px 0 60px 104px;
 }
 
 .about__image {
@@ -30,10 +30,9 @@
   margin: 24px 0 24px 0;
 }
 
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 975px) {
   .about {
-    margin: 0 0 61px 40px;
-    padding: 40px 0 0 0;
+    padding: 80px 0 60px 65px;
   }
 
   .about__image {
@@ -53,7 +52,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 655px) {
   .about {
     flex-direction: column;
     margin: 0;

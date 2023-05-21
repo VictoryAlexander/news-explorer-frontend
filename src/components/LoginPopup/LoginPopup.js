@@ -35,30 +35,30 @@ function LoginPopup({ handleSignIn, onClose, onButtonClick }) {
       redirectButtonText='Sign up'
       redirectText='or'
     >
-      <label className='logIn__label'>Email</label>
+      <label className='popup__label'>Email</label>
       <input
         type='email'
         name='email'
         id='email'
-        className='logIn__input'
+        className='popup__input'
         placeholder='Enter email'
         required
         value={email}
         onChange={handleEmailChange}
       />
-      <span className='login__error' id='email-error'></span>
-      <label className='logIn__label'>Password</label>
+      <span className='popup__error' id='email-error'></span>
+      <label className='popup__label'>Password</label>
       <input
         type='password'
         name='password'
         id='password'
-        className='logIn__input'
+        className='popup__input'
         placeholder='Enter password'
         required
         value={password}
         onChange={handlePasswordChange}
       />
-      <span className='login__error' id='password-error'></span>
+      <span className='popup__error' id='password-error'></span>
     </PopupWithForm>
   )
 }

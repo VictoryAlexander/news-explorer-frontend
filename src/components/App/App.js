@@ -11,6 +11,8 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SavedNews from '../SavedNews/SavedNews';
 import MobileMenuPopup from '../MobileMenuPopup/MobileMenuPopup';
+import MobileMenuPopupSaved from '../MobileMenuPopupSaved/MobileMenuPopupSaved';
+import backgroundImage from '../../images/georgia-de-lotz--UsJoNxLaNo-unsplash v2.png';
 import { getNewsResults, refineDataFromNewsApi } from '../../utils/newsApi';
 import api from '../../utils/api';
 
@@ -67,6 +69,7 @@ function App() {
 
   function handleSignOut() {
     setIsLoggedIn(false);
+    localStorage.removeItem('jwt');
   }
 
   function handleCardSave(id, isSaved) {
@@ -128,7 +131,7 @@ function App() {
                     handleNavClick={() => setActiveModal('mobileMenu')}
                     isLoggedIn={isLoggedIn}
                   />
-                  <span className='app__background' />
+                  <img className='app__background' src={backgroundImage} alt='background' />
                   {activeModal === 'mobileMenu' && (
                     <MobileMenuPopup onClose={closeAllModals} onButtonClick={() => {
                       closeAllModals();
@@ -154,7 +157,19 @@ function App() {
                 <>
                   <SavedNewsHeader 
                     handleSignOutClick={() => handleSignOut()}
+                    handleNavClick={() => setActiveModal('mobileMenuSaved')}
                   />
+                  {activeModal === 'mobileMenuSaved' && (
+                    <MobileMenuPopupSaved onClose={closeAllModals} onButtonClick={() => {
+                      closeAllModals();
+                      setActiveModal('signIn');
+                    }}
+                    handleSignOutClick={() => {
+                      handleSignOut();
+                    }}
+                    isLoggedIn={isLoggedIn}
+                    />
+                  )}
                   <SavedNews 
                     savedCards={savedItems}
                     onCardDelete={handleCardDelete}

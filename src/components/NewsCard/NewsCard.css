@@ -118,7 +118,7 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 833px) {
   .newsCard__image {
     width: 224px;
     height: 150px;
@@ -147,7 +147,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 473px) {
   .newsCard__image {
     width: 288px;
     height: 196px;

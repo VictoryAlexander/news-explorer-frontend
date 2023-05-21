@@ -55,10 +55,6 @@
   line-height: 1.375;
 }
 
-.search-form__input:focus {
-  outline: none;
-}
-
 .search-form__button {
   background: #2F71E5;
   border-radius: 100px;
@@ -75,9 +71,18 @@
   position: absolute;
   right: 0;
   cursor: url(../../images/Pointer.svg), pointer;
+  transition-duration: 0.25s;
 }
 
-@media screen and (max-width: 1439px) {
+.search-form__button:hover {
+  background: #347EFF;
+}
+
+.search-form__button:active {
+  background: #2A65CC;
+}
+
+@media screen and (max-width: 975px) {
   .search-form {
     margin: 38px 0 48px 0;
   }
@@ -104,7 +109,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 700px) {
   .search-form {
     margin: 30px 0 32px 0;
   }

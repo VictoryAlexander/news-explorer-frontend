@@ -1,3 +1,8 @@
+.newsCard__button-container_saved {
+  width: 255px;
+  justify-content: space-between;
+}
+
 .newsCard__save-button_delete {
   background: #ffffff url(../../images/trash.svg) center no-repeat;
 }
@@ -22,9 +27,9 @@
   padding: 8px 0 0 0;
 }
 
-@media screen and (max-width: 1439px) {
+/*@media screen and (max-width: 1439px) {
   .newsCard__tag {
     margin-right: 87px;
     width: 76px;
   }
-}
+}*/

@@ -23,7 +23,7 @@ function Navigation({ handleSignInClick, handleSignOutClick, handleNavClick, isL
           </li>
           <li>
             <p className='navigation__button navigation__button_container'>
-              {username}
+              <span className='navigation__user-text'>{username}</span>
               <button onClick={handleSignOutClick} className='navigation__sign-out'/>
             </p>
           </li>

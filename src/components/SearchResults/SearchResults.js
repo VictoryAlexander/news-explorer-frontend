@@ -26,7 +26,7 @@ function SearchResults({ loading, cards, handleSignInClick, onCardSave }) {
     return (
       <section className='searchResults'>
         <i className='searchResults__icon' />
-        <p className='searchResults__title'>Nothing Found</p>
+        <h2 className='searchResults__title'>Nothing Found</h2>
         <p className='searchResults__description'>Sorry, but nothing matched your search terms.</p>
       </section>
     )

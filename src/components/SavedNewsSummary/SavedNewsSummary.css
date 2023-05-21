@@ -20,6 +20,7 @@
   line-height: 1.15;
   max-width: 530px;
   margin: 28px 0 30px 0;
+  word-wrap: break-word;
 }
 
 .savedNewsSummary__keywords {
@@ -56,3 +57,14 @@
     margin: 16px 0 16px 0;
   }
 }
+
+/*@media screen and (max-width: 767px) {
+  .savedNewsSummary {
+    margin: 8px 16px 32px 16px;
+  }
+
+  .savedNewsSummary__header {
+    font-size: 12px;
+    line-height: 2;
+  }
+}*/

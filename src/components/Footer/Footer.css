@@ -1,7 +1,8 @@
 .footer {
-  margin: 0 104px 0 104px;
+  padding: 0 104px 0 104px;
   display: flex;
   justify-content: space-between;
+  background-color: #ffffff;
 }
 
 .footer__copyright {
@@ -48,16 +49,16 @@
   margin-right: 0;
 }
 
-@media screen and (max-width: 1439px) {
+@media screen and (max-width: 975px) {
   .footer {
-    margin: 0 40px 0 40px;
+    padding: 0 65px 0 65px;
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 712px) {
   .footer {
     flex-direction: column-reverse;
-    margin: 0 16px 0 16px;
+    padding: 0 16px 0 16px;
   }
 
   .footer__list {

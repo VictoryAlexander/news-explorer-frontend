@@ -17,8 +17,12 @@
   background: transparent url(../../images/logout\ saved.svg) center no-repeat;
 }
 
-@media screen and (max-width: 1439px) {
+.navigation__mobile-button_saved {
+  background: transparent url(../../images/menu-black.svg) center no-repeat;
+}
+
+/*@media screen and (max-width: 1439px) {
   .navigation__link_saved-articles {
     padding: 0 30px 21px 30px;
   }
-}
+}*/
