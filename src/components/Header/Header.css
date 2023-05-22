@@ -1,0 +1,40 @@
+.header {
+  z-index: 1;
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  background: rgba(196, 196, 196, 0.01);
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 104px 15px 104px;
+}
+
+.header__logo {
+  font-family: 'Roboto Slab', Times, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  text-decoration: none;
+  color: #ffffff;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@media screen and (max-width: 975px) {
+  .header__container {
+    margin: 14px 65px 12px 65px;
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .header__container {
+    margin: 16px;
+  }
+
+  .header__logo {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}

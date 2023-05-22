@@ -1,0 +1,62 @@
+.app {
+  background: #f5f6f5;
+  color: #1A1B22;
+  margin: auto;
+  width: 100%;
+  max-width: 1440px;
+}
+
+.app__wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.app__background {
+  position: absolute;
+  z-index: auto;
+  top: -13vw;
+  width: 100%;
+  max-width: 1440px;
+}
+
+@media screen and (max-width: 1055px) {
+  .app__background {
+    top: 0vw;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .app__background {
+    transform: scale(2);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .app__background {
+    top: 30vw;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .app__background {
+    transform: scale(2.5);
+    left: 10vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .app__background {
+    transform: scale(3);
+    top: 64vw;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .app__background {
+    transform: scale(3.5);
+    top: 79vw;
+  }
+}

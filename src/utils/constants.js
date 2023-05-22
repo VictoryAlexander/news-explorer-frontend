@@ -1,0 +1,87 @@
+const apiKey = 'ea1e50bc1a7d45f698d6c999b171075a';
+const day = new Date().getDate();
+const month = (new Date().getMonth()) + 1;
+const year = new Date().getFullYear();
+const oneWeekPrior = new Date(Date.now()-7*24*60*60*1000);
+const oneWeekPriorDay = oneWeekPrior.getDate();
+const oneWeekPriorMonth = (oneWeekPrior.getMonth()) + 1;
+const oneWeekPriorYear = oneWeekPrior.getFullYear();
+const initialSavedCards = [
+  {
+    "source": {
+      "id": null,
+      "name": "Lifehacker.com"
+    },
+    "author": "Jake Peterson",
+    "title": "You Can Finally Use Final Cut Pro and Logic Pro on Your iPad",
+    "description": "Every once in a while, Apple really surprises me. Today is one of those times: The company just announced is finally bringing Final Cut Pro and Logic Pro to the iPad, and with it, the tools to produce professional videos and music using a touch-screen device.…",
+    "url": "https://lifehacker.com/you-can-finally-use-final-cut-pro-and-logic-pro-on-your-1850418917",
+    "urlToImage": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/0ee8f44afbfa6844936829c893853a6b.jpg",
+    "publishedAt": "2023-05-09T19:00:00Z",
+    "content": "Every once in a while, Apple really surprises me. Today is one of those times: The company just announced is finally bringing Final Cut Pro and Logic Pro to the iPad, and with it, the tools to produc… [+5141 chars]",
+    "_id": 0,
+    "keyword": "apple"
+  },
+  {
+    "source": {
+      "id": "engadget",
+      "name": "Engadget"
+    },
+    "author": "Jon Fingas",
+    "title": "Apple Watch Series 9 may finally get a new processor",
+    "description": "The Apple Watch has effectively used the same processor since the S6 inside 2020's Series 6, but it's apparently poised for a long-due upgrade. Bloomberg's Mark Gurman tells subscribers in his newsletter Discord channel that Apple Watch Series 9 will reported…",
+    "url": "https://www.engadget.com/apple-watch-series-9-may-finally-get-a-new-processor-151516259.html",
+    "urlToImage": "https://s.yimg.com/uu/api/res/1.2/ovCEHeO.oc9YDmz.wbsKUQ--~B/Zmk9ZmlsbDtoPTYzMDtweW9mZj0wO3c9MTIwMDthcHBpZD15dGFjaHlvbg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2023-05/398c6da0-ee67-11ed-bfa7-872a4ff5351c.cf.jpg",
+    "publishedAt": "2023-05-09T15:15:16Z",
+    "content": "The Apple Watch has effectively used the same processor since the S6 inside 2020's Series 6, but it's apparently poised for a long-due upgrade. Bloomberg's Mark Gurman tells subscribers in his newsle… [+1330 chars]",
+    "_id": 1,
+    "keyword": "apple"
+  },
+  {
+    "source": {
+      "id": "wired",
+      "name": "Wired"
+    },
+    "author": "Kate Knibbs",
+    "title": "With 'Silo,' Apple TV+ Strikes Prestige Sci-Fi Gold",
+    "description": "The long-gestating adaptation of Hugh Howey’s book series was worth the wait.",
+    "url": "https://www.wired.com/story/silo-apple-tv-plus-review/",
+    "urlToImage": "https://media.wired.com/photos/645a8d4893ba5cd8bbdc93d0/191:100/w_1280,c_limit/Silo-Review-Culture.jpg",
+    "publishedAt": "2023-05-10T13:00:00Z",
+    "content": "The first two episodes introduce viewers to the shows subterranean universe through the eyes of Sheriff Holston Becker (David Oyelowo) and his wife, Allison (Rashida Jones). Theyre happily living wit… [+3922 chars]",
+    "_id": 2,
+    "keyword": "nature"
+  },
+  {
+    "source": {
+      "id": "engadget",
+      "name": "Engadget"
+    },
+    "author": "Sarah Fielding",
+    "title": "NASA ends its Lunar Flashlight mission",
+    "description": "NASA has pulled the plug on its Lunar Flashlight project, which was designed to look for sources of ice on our nearest neighbor. The agency spent the last few months trying, and failing, to get the craft to generate the necessary amount of thrust to get the s…",
+    "url": "https://www.engadget.com/nasa-ends-its-lunar-flashlight-mission-101557786.html",
+    "urlToImage": "https://s.yimg.com/uu/api/res/1.2/ERDqQdqttFQMHUOfVYYADw--~B/Zmk9ZmlsbDtoPTYzMDtweW9mZj0wO3c9MTIwMDthcHBpZD15dGFjaHlvbg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2023-05/2e960bf0-f2f8-11ed-9377-41da7d0547bb.cf.jpg",
+    "publishedAt": "2023-05-15T10:15:57Z",
+    "content": "NASA has pulled the plug on its Lunar Flashlight project, which was designed to look for sources of ice on our nearest neighbor. The agency spent the last few months trying, and failing, to get the c… [+1161 chars]",
+    "_id": 3,
+    "keyword": "tech"
+  },
+  {
+    "source": {
+      "id": "engadget",
+      "name": "Engadget"
+    },
+    "author": "Kris Holt",
+    "title": "The Polestar 3 and Volvo EX90 are both delayed until 2024",
+    "description": "Electric vehicle brand Polestar\r\n plans to reduce its headcount by 10 percent as part of an effort to cut costs. It will also institute a global hiring freeze and it has trimmed production guidance for 2023. Polestar now expects to produce between 60,000 and …",
+    "url": "https://www.engadget.com/the-polestar-3-and-volvo-ex90-are-both-delayed-until-2024-210052700.html",
+    "urlToImage": "https://s.yimg.com/uu/api/res/1.2/D1XOPsqIVsBplTusdM_ZnQ--~B/Zmk9ZmlsbDtoPTYzMDtweW9mZj0wO3c9MTIwMDthcHBpZD15dGFjaHlvbg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2023-03/388c37e0-cefb-11ed-bffe-ff6d7abd5de3.cf.jpg",
+    "publishedAt": "2023-05-11T21:00:52Z",
+    "content": "Electric vehicle brand Polestar\r\n plans to reduce its headcount by 10 percent as part of an effort to cut costs. It will also institute a global hiring freeze and it has trimmed production guidance f… [+1884 chars]",
+    "_id": 4,
+    "keyword": "testing"
+  }
+]
+
+export { apiKey, day, month, year, oneWeekPriorDay, oneWeekPriorMonth, oneWeekPriorYear, initialSavedCards };

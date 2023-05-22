@@ -1,0 +1,91 @@
+.menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.menu__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #1A1B22;
+}
+
+.menu__header {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  padding: 16px;
+}
+
+.menu__logo {
+  font-family: 'Roboto Slab', Times, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: none;
+  color: #ffffff;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.menu__close {
+  background: transparent url(../../images/close\ icon.svg) center no-repeat;
+  border: none;
+  width: 24px;
+  height: 24px;
+  scale: 0.65;
+  padding: 0;
+  cursor: url(../../images/Pointer.svg), pointer;
+}
+
+.menu__link {
+  font-family: 'Roboto', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 3.11;
+  text-decoration: none;
+  color: #ffffff;
+  cursor: url(../../images/Pointer.svg), pointer;
+  margin: 0 0 0 16px;
+}
+
+.menu__button {
+  font-family: 'Roboto', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 100px;
+  color: #ffffff;
+  padding: 16px 0 16px 0;
+  margin: 0 16px 24px 16px;
+  cursor: url(../../images/Pointer.svg), pointer;
+}
+
+.menu__button_container {
+  cursor: default;
+  display: flex;
+  justify-content: center;
+}
+
+.menu__sign-out {
+  background: transparent url(../../images/logout.svg) center no-repeat;
+  border: none;
+  height: 24px;
+  width: 24px;
+  margin-left: 18px;
+  cursor: url(../../images/Pointer.svg), pointer;
+}

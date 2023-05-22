@@ -1,0 +1,28 @@
+.navigation__link_saved {
+  color: #1A1B22;
+  border-bottom: none;
+}
+
+.navigation__link_saved-articles {
+  color: #1A1B22;
+  border-bottom: 3px solid #1A1B22;
+}
+
+.navigation__button_container_saved {
+  border: 1px solid #1A1B22;
+  color: #1A1B22;
+}
+
+.navigation__sign-out_saved {
+  background: transparent url(../../images/logout\ saved.svg) center no-repeat;
+}
+
+.navigation__mobile-button_saved {
+  background: transparent url(../../images/menu-black.svg) center no-repeat;
+}
+
+/*@media screen and (max-width: 1439px) {
+  .navigation__link_saved-articles {
+    padding: 0 30px 21px 30px;
+  }
+}*/
