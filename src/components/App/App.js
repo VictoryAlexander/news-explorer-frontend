@@ -12,9 +12,10 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SavedNews from '../SavedNews/SavedNews';
 import MobileMenuPopup from '../MobileMenuPopup/MobileMenuPopup';
 import MobileMenuPopupSaved from '../MobileMenuPopupSaved/MobileMenuPopupSaved';
-import backgroundImage from '../../images/georgia-de-lotz--UsJoNxLaNo-unsplash v2.png';
+import backgroundImage from '../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg';
 import { getNewsResults, refineDataFromNewsApi } from '../../utils/newsApi';
 import api from '../../utils/api';
+import { initialSavedCards } from '../../utils/constants';
 
 function App() {
   const [activeModal, setActiveModal] = useState(null);
@@ -107,11 +108,11 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
-      api.getArticleList()
+      /*api.getArticleList()
       .then((items) => {
         setSavedItems(items);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); This is commented out until the database is set up */
       setIsLoggedIn(true);
       setCurrentUser(token);
     }
@@ -171,7 +172,7 @@ function App() {
                     />
                   )}
                   <SavedNews 
-                    savedCards={savedItems}
+                    savedCards={initialSavedCards}
                     onCardDelete={handleCardDelete}
                   />
                 </>

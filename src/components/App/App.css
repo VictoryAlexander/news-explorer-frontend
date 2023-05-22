@@ -17,21 +17,46 @@
 .app__background {
   position: absolute;
   z-index: auto;
+  top: -13vw;
   width: 100%;
   max-width: 1440px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1055px) {
   .app__background {
-    transform: scale(2);
-    top: 5%;
-    left: 15%;
+    top: 0vw;
   }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 860px) {
   .app__background {
-    transform: scale(3.4);
-    top: 6.4%;
+    transform: scale(2);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .app__background {
+    top: 30vw;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .app__background {
+    transform: scale(2.5);
+    left: 10vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .app__background {
+    transform: scale(3);
+    top: 64vw;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .app__background {
+    transform: scale(3.5);
+    top: 79vw;
   }
 }

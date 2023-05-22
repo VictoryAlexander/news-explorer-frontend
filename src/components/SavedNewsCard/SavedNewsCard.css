@@ -1,5 +1,5 @@
 .newsCard__button-container_saved {
-  width: 255px;
+  width: 350px;
   justify-content: space-between;
 }
 
@@ -23,8 +23,19 @@
   line-height: 1.7;
   color: #000000;
   width: 87px;
-  margin-right: 41px;
   padding: 8px 0 0 0;
+}
+
+@media screen and (max-width: 833px) {
+  .newsCard__button-container_saved {
+    width: 208px;
+  }
+}
+
+@media screen and (max-width: 473px) {
+  .newsCard__button-container_saved {
+    width: 255px;
+  }
 }
 
 /*@media screen and (max-width: 1439px) {

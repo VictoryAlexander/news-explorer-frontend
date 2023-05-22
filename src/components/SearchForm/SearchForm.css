@@ -1,5 +1,6 @@
 .search-form {
-  margin: 80px 0 74px 0;
+  padding: 80px 0 74px 0;
+  margin: 0;
   display: flex;
   justify-content: center;
 }
