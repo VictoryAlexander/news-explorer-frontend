@@ -15,7 +15,7 @@ import MobileMenuPopupSaved from '../MobileMenuPopupSaved/MobileMenuPopupSaved';
 import backgroundImage from '../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg';
 import { getNewsResults, refineDataFromNewsApi } from '../../utils/newsApi';
 import api from '../../utils/api';
-import { initialSavedCards } from '../../utils/constants';
+import auth from '../../utils/auth';
 
 function App() {
   const [activeModal, setActiveModal] = useState(null);
@@ -24,6 +24,8 @@ function App() {
   const [loading, setLoading] = useState('');
   const [newsData, setNewsData] = useState([]);
   const [savedItems, setSavedItems] = useState([]);
+  const [keyword, setKeyword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleNewsSearch(keyWord) {
     setLoading('loading');
@@ -33,6 +35,7 @@ function App() {
           const refinedData = refineDataFromNewsApi(data);
           setNewsData(refinedData);
           setLoading('results');
+          setKeyword(keyWord);
         } else {
           setLoading('notFound');
         }
@@ -42,6 +45,7 @@ function App() {
 
   function closeAllModals() {
     setActiveModal(null);
+    setErrorMessage('');
   }
 
   useEffect(() => {
@@ -56,65 +60,83 @@ function App() {
     return () => document.removeEventListener('keydown', closeByEscape)
   }, []);
 
-  function handleSignUp() {
-    closeAllModals();
-    setActiveModal('registerComplete');
+  function handleSignUp(email, password, name) {
+    auth.register(email, password, name)
+      .then(() => {
+        closeAllModals();
+        setActiveModal('registerComplete');
+      })
+      .catch((err) => console.log(err));
   }
 
-  function handleSignIn(email) {
-    setIsLoggedIn(true);
-    setCurrentUser(email);
-    localStorage.setItem('jwt', email);
-    closeAllModals();
+  function handleSignIn(email, password) {
+    auth.signIn(email, password)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        const token = localStorage.getItem('jwt');
+        auth.checkToken(token)
+          .then((res) => {
+            setCurrentUser(res);
+            setIsLoggedIn(true);
+          })
+          .catch((err) => console.log(err));
+        api.getArticleList(token)
+          .then((items) => {
+            setSavedItems(items);
+          })
+          .catch((err) => console.log(err));
+        closeAllModals();
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(err);
+      });
   }
 
   function handleSignOut() {
     setIsLoggedIn(false);
+    setCurrentUser(null);
+    setSavedItems([]);
     localStorage.removeItem('jwt');
   }
 
-  function handleCardSave(id, isSaved) {
-    isSaved
-      ?
-        api
-          .removeSavedArticle(id)
-          .then((updatedCard) => {
-            setNewsData((cards) =>
-              cards.map((card) => (card._id === id ? updatedCard : card))
-            );
-            setSavedItems((cards) => cards.filter((c) => c._id !== id));
-          })
-          .catch((err) => console.log(err))
-      :
-        api
-          .addSavedArticle()
-          .then((updatedCard) => {
-            setNewsData((cards) =>
-              cards.map((card) => (card._id === id ? updatedCard : card))
-            );
-            setSavedItems([...savedItems, updatedCard])
-          })
-          .catch((err) => console.log(err))
+  function handleCardSave(savedCard) {
+    const token = localStorage.getItem('jwt');
+    api
+      .addSavedArticle(savedCard, keyword, token)
+      .then((savedItem) => {
+        setSavedItems([...savedItems, savedItem]);
+      })
+      .catch((err) => console.log(err))
   }
 
   function handleCardDelete(card) {
-    api.removeSavedArticle(card._id)
+    const token = localStorage.getItem('jwt');
+    api.removeSavedArticle(card._id, token)
       .then(() => {
         setSavedItems((cards) => cards.filter((c) => c._id !== card._id));
       })
       .catch((err) => console.log(err));
   }
 
+  function openPopup(popup) {
+    setActiveModal(popup);
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
-      /*api.getArticleList()
-      .then((items) => {
-        setSavedItems(items);
-      })
-      .catch((err) => console.log(err)); This is commented out until the database is set up */
-      setIsLoggedIn(true);
-      setCurrentUser(token);
+      auth.checkToken(token)
+        .then((res) => {
+          setIsLoggedIn(true);
+          setCurrentUser(res);
+        })
+        .catch((err) => console.log(err));
+      api.getArticleList(token)
+        .then((items) => {
+          setSavedItems(items);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
 
@@ -148,15 +170,16 @@ function App() {
                     loading={loading}
                     newsData={newsData}
                     handleNewsSearch={handleNewsSearch}
-                    handleSignInClick={() => setActiveModal('signIn')}
+                    handleSignInClick={openPopup}
                     onCardSave={handleCardSave}
+                    handleCardDelete={handleCardDelete}
                   />
                 </>
               }/>
               <Route path='/saved-news' element={
                 isLoggedIn ?
                 <>
-                  <SavedNewsHeader 
+                  <SavedNewsHeader
                     handleSignOutClick={() => handleSignOut()}
                     handleNavClick={() => setActiveModal('mobileMenuSaved')}
                   />
@@ -172,7 +195,7 @@ function App() {
                     />
                   )}
                   <SavedNews 
-                    savedCards={initialSavedCards}
+                    savedCards={savedItems}
                     onCardDelete={handleCardDelete}
                   />
                 </>
@@ -187,13 +210,17 @@ function App() {
           <LoginPopup handleSignIn={handleSignIn} onClose={closeAllModals} onButtonClick={() => {
             closeAllModals();
             setActiveModal('signUp');
-          }}/>
+          }}
+          errorMessage={errorMessage}
+          />
         )}
         {activeModal === 'signUp' && (
           <SignUpPopup handleSignUp={handleSignUp} onClose={closeAllModals} onButtonClick={() => {
             closeAllModals();
             setActiveModal('signIn');
-          }}/>
+          }}
+          errorMessage={errorMessage}
+          />
         )}
         {activeModal === 'registerComplete' && (
           <RegisterCompletePopup onClose={closeAllModals} onButtonClick={() => {

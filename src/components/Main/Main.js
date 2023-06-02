@@ -3,7 +3,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import SearchResults from '../SearchResults/SearchResults';
 import About from '../About/About';
 
-function Main({ loading, newsData, handleNewsSearch, handleSignInClick, onCardSave }) {
+function Main({ loading, newsData, handleNewsSearch, handleSignInClick, onCardSave, handleCardDelete }) {
   return (
     <main className="main">
       <SearchForm 
@@ -14,6 +14,7 @@ function Main({ loading, newsData, handleNewsSearch, handleSignInClick, onCardSa
           cards={newsData}
           handleSignInClick={handleSignInClick}
           onCardSave={onCardSave}
+          handleCardDelete={handleCardDelete}
         />
       <About />
     </main>

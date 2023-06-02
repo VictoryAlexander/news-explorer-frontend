@@ -4,9 +4,9 @@ function SavedNewsList({ cards, onCardDelete }) {
   return cards.length > 0 && (
     <section className='newsCards'>
       <ul className='newsCards__list'>
-        {cards.map((card, index) => (
+        {cards.map((card) => (
           <SavedNewsCard 
-            key={index}
+            key={card._id}
             card={card}
             onCardDelete={onCardDelete}
           />

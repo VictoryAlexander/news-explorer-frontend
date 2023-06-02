@@ -15,7 +15,7 @@ function refineDataFromNewsApi(data) {
   }
   newsArticles.forEach((item, i) => {
     item._id = i + 1;
-    item.saves = [];
+    item.saves = false;
   })
   return newsArticles;
 }

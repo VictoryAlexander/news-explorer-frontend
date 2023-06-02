@@ -2,7 +2,7 @@ import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 import { useEffect, useState } from 'react';
 
-function NewsCardList({ cards, handleSignInClick, onCardSave }) {
+function NewsCardList({ cards, handleSignInClick, onCardSave, handleCardDelete }) {
   const [index, setIndex] = useState(0);
   const [visibleData, setVisibleData] = useState([]);
   const pageSize = 3;
@@ -24,12 +24,13 @@ function NewsCardList({ cards, handleSignInClick, onCardSave }) {
     <section className='newsCards'>
       <h2 className='newsCards__title'>Search results</h2>
       <ul className='newsCards__list'>
-        {visibleData.map((card, index) => (
+        {visibleData.map((card) => (
           <NewsCard
-            key={index}
+            key={card._id}
             card={card}
             handleSignInClick={handleSignInClick}
             onCardSave={onCardSave}
+            handleCardDelete={handleCardDelete}
           />
         ))}
       </ul>

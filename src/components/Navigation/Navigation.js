@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import './Navigation.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Navigation({ handleSignInClick, handleSignOutClick, handleNavClick, isLoggedIn }) {
+function Navigation({ handleSignInClick, handleSignOutClick, handleNavClick }) {
   const currentUser = useContext(CurrentUserContext);
-  const username = currentUser;
 
-  if (isLoggedIn) {
+  if (!currentUser) {
     return (
       <nav className="navigation">
         <ul className="navigation__container">
@@ -16,16 +15,8 @@ function Navigation({ handleSignInClick, handleSignOutClick, handleNavClick, isL
               Home
             </Link>
           </li>
-          <li className='navigation__list'>
-            <Link to='/saved-news' className='navigation__link navigation__link_articles'>
-              Saved articles
-            </Link>
-          </li>
           <li>
-            <p className='navigation__button navigation__button_container'>
-              <span className='navigation__user-text'>{username}</span>
-              <button onClick={handleSignOutClick} className='navigation__sign-out'/>
-            </p>
+            <button onClick={handleSignInClick} className='navigation__button'>Sign in</button>
           </li>
           <li>
             <button type='button' onClick={handleNavClick} className='navigation__mobile-button'/>
@@ -35,6 +26,8 @@ function Navigation({ handleSignInClick, handleSignOutClick, handleNavClick, isL
     )
   }
 
+  const username = currentUser.userInfo.name;
+
   return (
     <nav className="navigation">
       <ul className="navigation__container">
@@ -43,8 +36,16 @@ function Navigation({ handleSignInClick, handleSignOutClick, handleNavClick, isL
             Home
           </Link>
         </li>
+        <li className='navigation__list'>
+          <Link to='/saved-news' className='navigation__link navigation__link_articles'>
+            Saved articles
+          </Link>
+        </li>
         <li>
-          <button onClick={handleSignInClick} className='navigation__button'>Sign in</button>
+          <p className='navigation__button navigation__button_container'>
+            <span className='navigation__user-text'>{username}</span>
+            <button onClick={handleSignOutClick} className='navigation__sign-out'/>
+          </p>
         </li>
         <li>
           <button type='button' onClick={handleNavClick} className='navigation__mobile-button'/>
