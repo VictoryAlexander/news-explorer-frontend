@@ -4,7 +4,7 @@ import { apiKey, day, month, oneWeekPriorDay, oneWeekPriorMonth, oneWeekPriorYea
 
 function getNewsResults(keyWord) {
   return fetch(
-    `https://newsapi.org/v2/everything?q=${keyWord}&from=${oneWeekPriorYear}-${oneWeekPriorMonth}-${oneWeekPriorDay}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=${apiKey}`
+    `https://nomoreparties.co/news/v2/everything?q=${keyWord}&from=${oneWeekPriorYear}-${oneWeekPriorMonth}-${oneWeekPriorDay}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=${apiKey}`
   ).then(handleServerResponse);
 }
 
