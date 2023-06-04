@@ -1,7 +1,7 @@
 import './SearchResults.css';
 import NewsCardList from '../NewsCardList/NewsCardList';
 
-function SearchResults({ loading, cards, handleSignInClick, onCardSave, handleCardDelete }) {
+function SearchResults({ loading, cards, handleSignInClick, onCardSave, handleCardDelete, onLoadMoreClick }) {
 
   if (loading === 'loading') {
     return (
@@ -19,6 +19,7 @@ function SearchResults({ loading, cards, handleSignInClick, onCardSave, handleCa
         handleSignInClick={handleSignInClick}
         onCardSave={onCardSave}
         handleCardDelete={handleCardDelete}
+        onLoadMoreClick={onLoadMoreClick}
       />
     )
   }

@@ -17,12 +17,12 @@ function getArticleList(token) {
 }
 
 function addSavedArticle(savedArticle, keyword, token) {
-  const source = savedArticle.source.name;
+  const source = savedArticle.source;
   const title = savedArticle.title;
-  const text = savedArticle.description;
-  const link = savedArticle.url;
-  const image = savedArticle.urlToImage;
-  const date = savedArticle.publishedAt;
+  const text = savedArticle.text;
+  const link = savedArticle.link;
+  const image = savedArticle.image;
+  const date = savedArticle.date;
   return fetch(`${baseUrl}/articles`, {
     method: 'POST',
     headers: {

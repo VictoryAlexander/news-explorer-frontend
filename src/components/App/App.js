@@ -26,6 +26,8 @@ function App() {
   const [savedItems, setSavedItems] = useState([]);
   const [keyword, setKeyword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [index, setIndex] = useState(0);
+  const [visibleData, setVisibleData] = useState([]);
 
   function handleNewsSearch(keyWord) {
     setLoading('loading');
@@ -36,6 +38,7 @@ function App() {
           setNewsData(refinedData);
           setLoading('results');
           setKeyword(keyWord);
+          renderVisibleData(refinedData)
         } else {
           setLoading('notFound');
         }
@@ -102,12 +105,44 @@ function App() {
 
   function handleCardSave(savedCard) {
     const token = localStorage.getItem('jwt');
-    api
-      .addSavedArticle(savedCard, keyword, token)
-      .then((savedItem) => {
-        setSavedItems([...savedItems, savedItem]);
-      })
-      .catch((err) => console.log(err))
+    !savedCard.saved
+      ?
+        api
+          .addSavedArticle(savedCard, keyword, token)
+          .then((savedItem) => {
+            setSavedItems([...savedItems, savedItem]);
+            const alteredNewsData = newsData.map(data => {
+              if (data._id !== savedCard._id) {
+                return data;
+              }
+              return {
+                ...data,
+                _id: savedItem._id,
+                saved: true,
+              }
+            })
+            setNewsData(alteredNewsData);
+            renderVisibleData(alteredNewsData);
+          })
+          .catch((err) => console.log(err))
+      :
+        api
+          .removeSavedArticle(savedCard._id, token)
+          .then((card) => {
+            setSavedItems((cards) => cards.filter((c) => c._id !== card._id));
+            const alteredNewsData = newsData.map(data => {
+              if (data._id !== savedCard._id) {
+                return data;
+              }
+              return {
+                ...data,
+                saved: false,
+              }
+            })
+            setNewsData(alteredNewsData);
+            renderVisibleData(alteredNewsData);
+          })
+          .catch((err) => console.log(err));
   }
 
   function handleCardDelete(card) {
@@ -121,6 +156,24 @@ function App() {
 
   function openPopup(popup) {
     setActiveModal(popup);
+  }
+
+  function handleLoadMore() {
+    setIndex(index + 1);
+    renderVisibleData(newsData);
+  }
+
+  function renderVisibleData(data) {
+    const pageSize = 3;
+    const newCards = [];
+    const numberOfItems = pageSize*(index + 1); 
+
+    data.forEach((item, i) => {
+      if (i < numberOfItems) {
+        newCards.push(item);
+      }
+    })
+    setVisibleData(newCards);
   }
 
   useEffect(() => {
@@ -168,11 +221,12 @@ function App() {
                   )}
                   <Main
                     loading={loading}
-                    newsData={newsData}
+                    cards={visibleData}
                     handleNewsSearch={handleNewsSearch}
                     handleSignInClick={openPopup}
                     onCardSave={handleCardSave}
                     handleCardDelete={handleCardDelete}
+                    onLoadMoreClick={handleLoadMore}
                   />
                 </>
               }/>

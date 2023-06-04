@@ -1,30 +1,12 @@
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
-import { useEffect, useState } from 'react';
 
-function NewsCardList({ cards, handleSignInClick, onCardSave, handleCardDelete }) {
-  const [index, setIndex] = useState(0);
-  const [visibleData, setVisibleData] = useState([]);
-  const pageSize = 3;
-
-  useEffect(() => {
-    const numberOfItems = pageSize*(index + 1);
-    const newCards = [];
-
-    cards.forEach((item, i) => {
-      if (i < numberOfItems) {
-        newCards.push(item);
-      }
-    })
-
-    setVisibleData(newCards);
-  }, [index])
-
+function NewsCardList({ cards, handleSignInClick, onCardSave, handleCardDelete, onLoadMoreClick }) {
   return(
     <section className='newsCards'>
       <h2 className='newsCards__title'>Search results</h2>
       <ul className='newsCards__list'>
-        {visibleData.map((card) => (
+        {cards.map((card) => (
           <NewsCard
             key={card._id}
             card={card}
@@ -34,7 +16,7 @@ function NewsCardList({ cards, handleSignInClick, onCardSave, handleCardDelete }
           />
         ))}
       </ul>
-      <button type='button' className='newsCards__button' onClick={() => setIndex(index + 1)}>Show more</button>
+      <button type='button' className='newsCards__button' onClick={onLoadMoreClick}>Show more</button>
     </section>
   )
 }
