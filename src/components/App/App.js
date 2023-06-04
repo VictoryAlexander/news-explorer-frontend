@@ -166,7 +166,7 @@ function App() {
   function renderVisibleData(data) {
     const pageSize = 3;
     const newCards = [];
-    const numberOfItems = pageSize*(index + 1); 
+    const numberOfItems = pageSize*(index + 1);
 
     data.forEach((item, i) => {
       if (i < numberOfItems) {
@@ -225,7 +225,6 @@ function App() {
                     handleNewsSearch={handleNewsSearch}
                     handleSignInClick={openPopup}
                     onCardSave={handleCardSave}
-                    handleCardDelete={handleCardDelete}
                     onLoadMoreClick={handleLoadMore}
                   />
                 </>
