@@ -1,29 +1,21 @@
 import './LoginPopup.css';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import { useFormWithValidation } from '../FormWithValidation/FormWithValidation';
 
-function LoginPopup({ handleSignIn, onClose, onButtonClick }) {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function LoginPopup({ handleSignIn, onClose, onButtonClick, errorMessage }) {
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
-    setEmail('');
-    setPassword('');
-  }, []);
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
+    resetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleSignIn(email);
+    handleSignIn(values.email, values.password);
   }
+
   return (
     <PopupWithForm
       name='login'
@@ -34,6 +26,8 @@ function LoginPopup({ handleSignIn, onClose, onButtonClick }) {
       onButtonClick={onButtonClick}
       redirectButtonText='Sign up'
       redirectText='or'
+      isValid={isValid}
+      errorMessage={errorMessage}
     >
       <label className='popup__label'>Email</label>
       <input
@@ -43,10 +37,10 @@ function LoginPopup({ handleSignIn, onClose, onButtonClick }) {
         className='popup__input'
         placeholder='Enter email'
         required
-        value={email}
-        onChange={handleEmailChange}
+        value={values.email || ''}
+        onChange={handleChange}
       />
-      <span className='popup__error' id='email-error'></span>
+      <span className='popup__error' id='email-error'>{errors.email || ''}</span>
       <label className='popup__label'>Password</label>
       <input
         type='password'
@@ -55,10 +49,10 @@ function LoginPopup({ handleSignIn, onClose, onButtonClick }) {
         className='popup__input'
         placeholder='Enter password'
         required
-        value={password}
-        onChange={handlePasswordChange}
+        value={values.password || ''}
+        onChange={handleChange}
       />
-      <span className='popup__error' id='password-error'></span>
+      <span className='popup__error' id='password-error'>{errors.password || ''}</span>
     </PopupWithForm>
   )
 }

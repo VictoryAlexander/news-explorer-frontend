@@ -4,7 +4,7 @@ import { apiKey, day, month, oneWeekPriorDay, oneWeekPriorMonth, oneWeekPriorYea
 
 function getNewsResults(keyWord) {
   return fetch(
-    `https://newsapi.org/v2/everything?q=${keyWord}&from=${oneWeekPriorYear}-${oneWeekPriorMonth}-${oneWeekPriorDay}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=${apiKey}`
+    `https://nomoreparties.co/news/v2/everything?q=${keyWord}&from=${oneWeekPriorYear}-${oneWeekPriorMonth}-${oneWeekPriorDay}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=${apiKey}`
   ).then(handleServerResponse);
 }
 
@@ -13,11 +13,20 @@ function refineDataFromNewsApi(data) {
   if (!newsArticles) {
     return null;
   }
+  const refinedArticles = [];
   newsArticles.forEach((item, i) => {
-    item._id = i + 1;
-    item.saves = [];
+    let articleObject = {};
+    articleObject.source = item.source.name;
+    articleObject.title = item.title;
+    articleObject.text = item.description;
+    articleObject.link = item.url;
+    articleObject.image = item.urlToImage;
+    articleObject.date = item.publishedAt;
+    articleObject._id = i;
+    articleObject.saved = false;
+    refinedArticles.push(articleObject);
   })
-  return newsArticles;
+  return refinedArticles;
 }
 
 export { getNewsResults, refineDataFromNewsApi };

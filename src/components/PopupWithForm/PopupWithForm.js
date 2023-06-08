@@ -1,10 +1,11 @@
 import React from 'react';
 import './PopupWithForm.css';
 
-function PopupWithForm({ name, title, onClose, buttonText, onSubmit, onButtonClick, redirectButtonText, redirectText, children }) {
+function PopupWithForm({ name, title, onClose, buttonText, onSubmit, onButtonClick, redirectButtonText, redirectText, isValid, errorMessage, children }) {
 
   const redirectTextClassName = `popup__redirect-text ${redirectText.length > 0 ? 'popup__redirect-text_visible' : 'popup__redirect-text_hidden'}`;
   const redirectButtonClassName = `popup__redirect-button ${redirectButtonText.length > 0 ? 'popup__redirect-button_visible' : 'popup__redirect-button_hidden'}`;
+  const popupSubmitButtonClassName = `popup__submit-button ${!isValid ? 'popup__submit-button_disabled' : ''}`;
 
   return (
     <div className='popup' onClick={onClose}>
@@ -19,7 +20,8 @@ function PopupWithForm({ name, title, onClose, buttonText, onSubmit, onButtonCli
         </div>
         {children}
         <div className='popup__button-container'>
-          <button type='submit' className='popup__submit-button popup__submit-button_disabled'>{buttonText}</button>
+          <span className='popup__error popup__error_response'>{errorMessage || ''}</span>
+          <button type='submit' className={popupSubmitButtonClassName}>{buttonText}</button>
           <div className='popup__redirect-container'>
             <p className={redirectTextClassName}>{redirectText}&nbsp;</p>
             <p className={redirectButtonClassName} onClick={onButtonClick}>{redirectButtonText}</p>

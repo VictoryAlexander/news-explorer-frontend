@@ -5,6 +5,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function SavedNewsNavigation({ handleSignOutClick, handleNavClick }) {
   const currentUser = useContext(CurrentUserContext);
+  const username = currentUser.userInfo.name;
   return (
     <nav className="navigation">
       <ul className="navigation__container">
@@ -20,7 +21,7 @@ function SavedNewsNavigation({ handleSignOutClick, handleNavClick }) {
         </li>
         <li>
           <p className='navigation__button navigation__button_container navigation__button_container_saved'>
-            <span className='navigation__user-text'>{currentUser}</span>
+            <span className='navigation__user-text'>{username}</span>
             <button onClick={handleSignOutClick} className='navigation__sign-out navigation__sign-out_saved'/>
           </p>
         </li>

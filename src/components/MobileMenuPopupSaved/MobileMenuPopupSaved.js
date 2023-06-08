@@ -5,6 +5,8 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function MobileMenuPopupSaved({ onClose, handleSignOutClick }) {
   const currentUser = useContext(CurrentUserContext);
+  const username = currentUser.userInfo.name;
+
   return (
     <div className='menu'>
       <div className="menu__wrapper menu__wrapper_saved">
@@ -19,7 +21,7 @@ function MobileMenuPopupSaved({ onClose, handleSignOutClick }) {
         <Link to='/' className="menu__link menu__link_saved" onClick={onClose}>Home</Link>
         <Link to='/saved-news' className="menu__link menu__link_saved" onClick={onClose}>Saved articles</Link>
         <p className='menu__button menu__button_container menu__button_container_saved'>
-          {currentUser}
+          {username}
           <button onClick={handleSignOutClick} className='menu__sign-out menu__sign-out_saved'/>
         </p>
       </div>
