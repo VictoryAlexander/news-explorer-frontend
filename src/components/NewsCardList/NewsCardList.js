@@ -1,7 +1,7 @@
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ cards, handleSignInClick, onCardSave, handleCardDelete, onLoadMoreClick }) {
+function NewsCardList({ cards, handleSignInClick, onCardSave, onLoadMoreClick }) {
   return(
     <section className='newsCards'>
       <h2 className='newsCards__title'>Search results</h2>
@@ -12,7 +12,6 @@ function NewsCardList({ cards, handleSignInClick, onCardSave, handleCardDelete, 
             card={card}
             handleSignInClick={handleSignInClick}
             onCardSave={onCardSave}
-            handleCardDelete={handleCardDelete}
           />
         ))}
       </ul>
